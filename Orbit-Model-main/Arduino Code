@@ -491,7 +491,9 @@ double MeanAnomalyToTrueAnomaly(double M, double ecc){
   return ta;
   
 }
-void COEtoCart(){
+void COEtoCart(){ 
+  // turns orbital elements (eccentricity, raan, periapsis, inclination)
+  // into cartesian coordinates
   //double p, r;
   if (orbit_e<.01){
     orbit_p = orbit_a;
@@ -553,9 +555,6 @@ void Cart2Spherical(){
 }
 void Spherical2PWM(){
  
-  
-  
-
   // servos.setPWM(0, 0, 500 - 2.33*elevation);
   // servos.setPWM(1, 0, 800 - 10*azimuth);
   // Serial.print("S");
