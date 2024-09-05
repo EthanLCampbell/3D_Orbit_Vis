@@ -44,7 +44,7 @@ void HandleButton(void){
     }
   lastDisableButtonState = reading;
 }
-void HandleEncoders(void){
+void HandleEncoders(void){ //handling errors 
   
   currentRaan = raanEnc.read();
   currentRaan /= 8688; //steps per rev 8719
@@ -115,7 +115,7 @@ void HandlePID(void){
   incSpeed = (int) (incKp*incError + incKi*incErrorInt + incKd*incErrorDer + incMotorMin*sign(incError));
   oldTime = millis(); //change from milliseconds to seconds
 }
-void CalibrateRaan(void){
+void CalibrateRaan(void){ // calibrates right ascension of ascending node
   //Serial.println(digitalRead(raanGate));
   if (digitalRead(raanGate) == 1){
     raanSpeed = 80;
@@ -125,7 +125,7 @@ void CalibrateRaan(void){
     raanCalibrated = 1;  
   } 
 }
-void CalibrateInc(void){
+void CalibrateInc(void){ // calibrates inclination
   raanSetpoint = 0;
   incSetpoint = 999;
   //raanError = raanSetpoint - currentRaan;
@@ -141,7 +141,7 @@ void CalibrateInc(void){
     incSetpoint = 0;
   }  
 }
-void Zero(void){
+void Zero(void){ // sends plane back to 0
   raanEnc.write(0);
   incEnc.write(0);
   raanSetpoint = 0;
